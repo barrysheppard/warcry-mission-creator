@@ -950,7 +950,7 @@ function drawIcons(){
     isOrientationChecked = document.getElementById("orientation").checked;
     if(isOrientationChecked){
         // Orientation Runemark
-        imageSrc =  "assets/img/runemarks/black/twists-orientation.svg";
+        imageSrc =  "https://barrysheppard.github.io/warcry-mission-creator/assets/img/runemarks/black/twists-orientation.svg";
         position = scalePixelPosition({ x: 80, y: 75 });
         size = scalePixelPosition({ x: 80, y: 80 });
         drawImageSrc(position, size, imageSrc);
@@ -961,7 +961,7 @@ function drawIcons(){
     isSymmetricalChecked = document.getElementById("symmetrical").checked;
     if(isSymmetricalChecked){
         // Symmetrical runemark
-        imageSrc =  "assets/img/runemarks/black/card-decks-symmetrical.svg";
+        imageSrc =  "https://barrysheppard.github.io/warcry-mission-creator/assets/img/runemarks/black/card-decks-symmetrical.svg";
         position = scalePixelPosition({ x: 80, y: 650 });
         size = scalePixelPosition({ x: 80, y: 80 });
         drawImageSrc(position, size, imageSrc);
