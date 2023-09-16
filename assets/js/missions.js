@@ -281,6 +281,8 @@ const renderCustomBackground = function(missionData) {
         renderFighterImage(missionData);
         drawDeployment();
         drawText();
+        drawIcons();
+
     };
     backgroundImage.src = missionData.customBackgroundUrl;
 };
@@ -291,6 +293,8 @@ const renderDefaultBackground = function(missionData) {
     renderFighterImage(missionData);
     drawDeployment();
     drawText();
+    drawIcons();
+
 };
   
 
