@@ -1052,90 +1052,90 @@ function drawBorderLine(XValue, YValue, Turn) {
 
     if(YValue == 0){
         if(XValue < 15){
-            drawThickLine(getContext(), 0, 0, 15, 0, 6, color="black")
+            drawThickLine(getContext(), 0, 0, 15, 0, 6, color="black", arrowSize=0)
             // Left perpendicular cap
-            drawThickLine(getContext(), 0, 0-.4, 0, 0+.4, 6, color="black");
+            drawThickLine(getContext(), 0, 0-.4, 0, 0+.4, 6, color="black", arrowSize=0);
             // Right perpendicular cap
-            drawThickLine(getContext(), 15, 0-.4, 15, 0+.4, 6, color="black"); 
+            drawThickLine(getContext(), 15, 0-.4, 15, 0+.4, 6, color="black", arrowSize=0); 
         } else if (XValue > 15){
-            drawThickLine(getContext(), 15, 0, 30, 0, 6, color="black")
+            drawThickLine(getContext(), 15, 0, 30, 0, 6, color="black", arrowSize=0);
             // Left perpendicular cap
-            drawThickLine(getContext(), 15, 0-.4, 15, 0+.4, 6, color="black"); 
+            drawThickLine(getContext(), 15, 0-.4, 15, 0+.4, 6, color="black", arrowSize=0); 
             // Right perpendicular cap
-            drawThickLine(getContext(), 30, 0-.4, 30, 0+.4, 6, color="black"); 
+            drawThickLine(getContext(), 30, 0-.4, 30, 0+.4, 6, color="black", arrowSize=0); 
         } else if (XValue == 15){
-            drawThickLine(getContext(), 0, 0, 30, 0, 6, color="black")
+            drawThickLine(getContext(), 0, 0, 30, 0, 6, color="black", arrowSize=0);
             // Left perpendicular cap
-            drawThickLine(getContext(), 0, 0-.4, 0, 0+.4, 6, color="black");
+            drawThickLine(getContext(), 0, 0-.4, 0, 0+.4, 6, color="black", arrowSize=0);
             // Right perpendicular cap
-            drawThickLine(getContext(), 30, 0-.4, 30, 0+.4, 6, color="black"); 
+            drawThickLine(getContext(), 30, 0-.4, 30, 0+.4, 6, color="black", arrowSize=0);
         }
     }
     
     if(YValue == 22){
         if(XValue < 15){
-            drawThickLine(getContext(), 0, 22, 15, 22, 6, color="black")
+            drawThickLine(getContext(), 0, 22, 15, 22, 6, color="black", arrowSize=0)
             // Left perpendicular cap
-            drawThickLine(getContext(), 0, 22-.4, 0, 22+.4, 6, color="black");
+            drawThickLine(getContext(), 0, 22-.4, 0, 22+.4, 6, color="black", arrowSize=0);
             // Right perpendicular cap
-            drawThickLine(getContext(), 15, 22-.4, 15, 22+.4, 6, color="black"); 
+            drawThickLine(getContext(), 15, 22-.4, 15, 22+.4, 6, color="black", arrowSize=0); 
         } else if (XValue > 15){
-            drawThickLine(getContext(), 15, 22, 30, 22, 6, color="black")
+            drawThickLine(getContext(), 15, 22, 30, 22, 6, color="black", arrowSize=0)
             // Left perpendicular cap
-            drawThickLine(getContext(), 15, 22-.4, 15, 22+.4, 6, color="black"); 
+            drawThickLine(getContext(), 15, 22-.4, 15, 22+.4, 6, color="black", arrowSize=0); 
             // Right perpendicular cap
-            drawThickLine(getContext(), 30, 22-.4, 30, 22+.4, 6, color="black"); 
+            drawThickLine(getContext(), 30, 22-.4, 30, 22+.4, 6, color="black", arrowSize=0); 
         } else if (XValue == 15){
-            drawThickLine(getContext(), 0, 22, 30, 22, 6, color="black")
+            drawThickLine(getContext(), 0, 22, 30, 22, 6, color="black", arrowSize=0)
             // Left perpendicular cap
-            drawThickLine(getContext(), 0, 22-.4, 0, 22+.4, 6, color="black");
+            drawThickLine(getContext(), 0, 22-.4, 0, 22+.4, 6, color="black", arrowSize=0);
             // Right perpendicular cap
-            drawThickLine(getContext(), 30, 22-.4, 30, 22+.4, 6, color="black"); 
+            drawThickLine(getContext(), 30, 22-.4, 30, 22+.4, 6, color="black", arrowSize=0); 
         }
     }
 
     if(XValue == 0){
         if(YValue < 11){
-            drawThickLine(getContext(), 0, 0, 0, 11, 6, color="black")
+            drawThickLine(getContext(), 0, 0, 0, 11, 6, color="black", arrowSize=0)
             // Top perpendicular cap
-            drawThickLine(getContext(), 0-.4, 0, 0+.4, 0, 6, color="black");
+            drawThickLine(getContext(), 0-.4, 0, 0+.4, 0, 6, color="black", arrowSize=0);
             // Bottom perpendicular cap
-            drawThickLine(getContext(), 0-.4, 11, 0+.4, 11, 6, color="black");            
+            drawThickLine(getContext(), 0-.4, 11, 0+.4, 11, 6, color="black", arrowSize=0);     
         } else if (YValue > 11){
-            drawThickLine(getContext(), 0, 11, 0, 22, 6, color="black")
+            drawThickLine(getContext(), 0, 11, 0, 22, 6, color="black", arrowSize=0)
             // Top perpendicular cap
-            drawThickLine(getContext(), 0-.4, 11, 0+.4, 11, 6, color="black");
+            drawThickLine(getContext(), 0-.4, 11, 0+.4, 11, 6, color="black", arrowSize=0);
             // Bottom perpendicular cap
-            drawThickLine(getContext(), 0-.4, 22, 0+.4, 22, 6, color="black");
+            drawThickLine(getContext(), 0-.4, 22, 0+.4, 22, 6, color="black", arrowSize=0);
         } else if (YValue == 11){
-            drawThickLine(getContext(), 0, 0, 0, 22, 6, color="black")
+            drawThickLine(getContext(), 0, 0, 0, 22, 6, color="black", arrowSize=0)
             // Top perpendicular cap
-            drawThickLine(getContext(), 0-.4, 0, 0+.4, 0, 6, color="black");
+            drawThickLine(getContext(), 0-.4, 0, 0+.4, 0, 6, color="black", arrowSize=0);
             // Bottom perpendicular cap
-            drawThickLine(getContext(), 0-.4, 22, 0+.4, 22, 6, color="black");            
+            drawThickLine(getContext(), 0-.4, 22, 0+.4, 22, 6, color="black", arrowSize=0);
         }
     }
 
     if(XValue == 30){
         if(YValue < 11){
             // Original line
-            drawThickLine(getContext(), 30, 0, 30, 11, 6, color="black");
+            drawThickLine(getContext(), 30, 0, 30, 11, 6, color="black", arrowSize=0);
             // Top perpendicular cap
-            drawThickLine(getContext(), 30-.4, 0, 30+.4, 0, 6, color="black");
+            drawThickLine(getContext(), 30-.4, 0, 30+.4, 0, 6, color="black", arrowSize=0);
             // Bottom perpendicular cap
-            drawThickLine(getContext(), 30-.4, 11, 30+.4, 11, 6, color="black");
+            drawThickLine(getContext(), 30-.4, 11, 30+.4, 11, 6, color="black", arrowSize=0);
         } else if (YValue > 11){
-            drawThickLine(getContext(), 30, 11, 30, 22, 6, color="black")
+            drawThickLine(getContext(), 30, 11, 30, 22, 6, color="black", arrowSize=0)
             // Top perpendicular cap
-            drawThickLine(getContext(), 30-.4, 11, 30+.4, 11, 6, color="black");
+            drawThickLine(getContext(), 30-.4, 11, 30+.4, 11, 6, color="black", arrowSize=0);
             // Bottom perpendicular cap
-            drawThickLine(getContext(), 30-.4, 22, 30+.4, 22, 6, color="black");
+            drawThickLine(getContext(), 30-.4, 22, 30+.4, 22, 6, color="black", arrowSize=0);
         } else if (YValue == 11){
-            drawThickLine(getContext(), 30, 0, 30, 22, 6, color="black")
+            drawThickLine(getContext(), 30, 0, 30, 22, 6, color="black", arrowSize=0)
             // Top perpendicular cap
-            drawThickLine(getContext(), 30-.4, 0, 30+.4, 0, 6, color="black");
+            drawThickLine(getContext(), 30-.4, 0, 30+.4, 0, 6, color="black", arrowSize=0);
             // Bottom perpendicular cap
-            drawThickLine(getContext(), 30-.4, 22, 30+.4, 22, 6, color="black");
+            drawThickLine(getContext(), 30-.4, 22, 30+.4, 22, 6, color="black", arrowSize=0);
         }
     }
 
