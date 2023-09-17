@@ -385,8 +385,8 @@ function defaultmissionData() {
     missionData.customBackgroundUrl = null;
     missionData.customBackgroundProperties = getDefaultModelImageProperties();
     missionData.base64CustomBackground = null;
-    missionData.missionName = "Name";
-    missionData.missionType = " ";
+    missionData.missionName = "Straight Face Off";
+    missionData.missionType = "Deployment";
 
     missionData.bgselected = "bg-07";
 
@@ -748,34 +748,9 @@ function drawOverlayTexts(missionData) {
     getContext().drawImage(document.getElementById('map'), 0, 0, getCanvas().width, getCanvas().height); 
   }
 
-  function drawRedShield(x, y){
+  function drawIcon(name, x, y){
     newCoord = convertInchesToPixels(x, y);
-    getContext().drawImage(document.getElementById('red_shield'), newCoord.x, newCoord.y, 70, 70); 
-  }
-
-  function drawRedDagger(x, y){
-    newCoord = convertInchesToPixels(x, y);
-    getContext().drawImage(document.getElementById('red_dagger'), newCoord.x, newCoord.y, 70, 70);   
-}
-
-  function drawRedHammer(x, y){
-    newCoord = convertInchesToPixels(x, y);
-    getContext().drawImage(document.getElementById('red_hammer'), newCoord.x, newCoord.y, 70, 70); 
-  }
-
-  function drawBlueShield(x, y){
-    newCoord = convertInchesToPixels(x, y);
-    getContext().drawImage(document.getElementById('blue_shield'), newCoord.x, newCoord.y, 70, 70);   
-}
-
-  function drawBlueDagger(x, y){
-    newCoord = convertInchesToPixels(x, y);
-    getContext().drawImage(document.getElementById('blue_dagger'), newCoord.x, newCoord.y, 70, 70);
-  }
-
-  function drawBlueHammer(x, y){
-    newCoord = convertInchesToPixels(x, y);
-    getContext().drawImage(document.getElementById('blue_hammer'), newCoord.x, newCoord.y, 70, 70);
+    getContext().drawImage(document.getElementById(name), newCoord.x, newCoord.y, 70, 70); 
   }
 
 function convertInchesToPixels(x_inches, y_inches){
@@ -950,10 +925,16 @@ function drawIcons(){
     isOrientationChecked = document.getElementById("orientation").checked;
     if(isOrientationChecked){
         // Orientation Runemark
-        imageSrc =  "https://barrysheppard.github.io/warcry-mission-creator/assets/img/runemarks/black/twists-orientation.svg";
+        if(document.getElementById("white").checked){
+            imgElement = document.getElementById("orientation_icon_white");
+        } else {
+            imgElement = document.getElementById("orientation_icon");
+        }
+        imageSrc = imgElement.src;
         position = scalePixelPosition({ x: 80, y: 75 });
         size = scalePixelPosition({ x: 80, y: 80 });
         drawImageSrc(position, size, imageSrc);
+
         position = scalePixelPosition({ x: 950, y: 75 });
         size = scalePixelPosition({ x: 80, y: 80 });
         drawImageSrc(position, size, imageSrc);
@@ -961,7 +942,12 @@ function drawIcons(){
     isSymmetricalChecked = document.getElementById("symmetrical").checked;
     if(isSymmetricalChecked){
         // Symmetrical runemark
-        imageSrc =  "https://barrysheppard.github.io/warcry-mission-creator/assets/img/runemarks/black/card-decks-symmetrical.svg";
+        if(document.getElementById("white").checked){
+            imgElement = document.getElementById("symmetrical_icon_white");
+        } else {
+            imgElement = document.getElementById("symmetrical_icon");
+        }
+        imageSrc = imgElement.src;
         position = scalePixelPosition({ x: 80, y: 650 });
         size = scalePixelPosition({ x: 80, y: 80 });
         drawImageSrc(position, size, imageSrc);
@@ -1017,7 +1003,13 @@ function drawText(){
     cardText = document.getElementById("textValue").value;
 
     getContext().font = '32px Georgia, serif';
-    getContext().fillStyle = 'black';
+    if(document.getElementById("white").checked){
+        getContext().fillStyle = 'white';
+    } else {
+        getContext().fillStyle = 'black';
+    }
+
+    
     getContext().textAlign = "left";
     getContext().textBaseline = "middle";
 
@@ -1040,7 +1032,6 @@ function drawText(){
             if (start === -1) {
                 // No more ** sequences found in this line, print the rest in black
                 getContext().font = font_size + 'px Georgia, serif';
-                getContext().fillStyle = 'black';
                 const printText = text.substring(startIndex);
                 const textWidth = getContext().measureText(printText).width;
                 getContext().fillText(printText, xPosition, yStart + (line * lineHeight));
@@ -1051,7 +1042,6 @@ function drawText(){
             if (start > startIndex) {
                 // Print text before the ** in black
                 getContext().font = font_size + 'px Georgia, serif';
-                getContext().fillStyle = 'black';
                 const printText = text.substring(startIndex, start);
                 const textWidth = getContext().measureText(printText).width;
                 getContext().fillText(printText, xPosition, yStart + (line * lineHeight));
@@ -1063,7 +1053,6 @@ function drawText(){
             if (end === -1) {
                 // If no closing ** found, print the rest in black
                 getContext().font = font_size + 'px Georgia, serif';
-                getContext().fillStyle = 'black';
                 const printText = text.substring(start);
                 const textWidth = getContext().measureText(printText).width;
                 getContext().fillText(printText, xPosition, yStart + (line * lineHeight));
@@ -1125,12 +1114,52 @@ function drawDeployment(){
     var redDaggerLine = document.getElementById("redDaggerLineDeployment").checked;
     var redDaggerTurn = document.getElementById("redDaggerTurn").value;
 
+    var objective1XValue = document.getElementById("objective1X").value;
+    var objective1YValue = document.getElementById("objective1Y").value;
+    var objective1Icon = document.getElementById("objective1Icon").value;
+    var objective2XValue = document.getElementById("objective2X").value;
+    var objective2YValue = document.getElementById("objective2Y").value;
+    var objective2Icon = document.getElementById("objective2Icon").value;
+    var objective3XValue = document.getElementById("objective3X").value;
+    var objective3YValue = document.getElementById("objective3Y").value;
+    var objective3Icon = document.getElementById("objective3Icon").value;
+    var objective4XValue = document.getElementById("objective4X").value;
+    var objective4YValue = document.getElementById("objective4Y").value;
+    var objective4Icon = document.getElementById("objective4Icon").value;
+    var objective5XValue = document.getElementById("objective5X").value;
+    var objective5YValue = document.getElementById("objective5Y").value;
+    var objective5Icon = document.getElementById("objective5Icon").value;
+
+
     // prepare text for line drawing
     // Draw the text in the middle of the line
     getContext().font = "24px LithosBlack"; // Adjust the font size and style as needed
     getContext().fillStyle = "black";
     getContext().textAlign = "center";
     getContext().textBaseline = "middle";
+    
+
+    // Treasure and Objectives
+    if(objective1Icon>0){
+        drawLines(objective1XValue, objective1YValue, "");
+        drawIcon("green_objective_" + objective1Icon, objective1XValue, objective1YValue);
+    }
+    if(objective2Icon>0){
+        drawLines(objective2XValue, objective2YValue, "");
+        drawIcon("green_objective_" + objective2Icon, objective2XValue, objective2YValue);
+    }
+    if(objective3Icon>0){
+        drawLines(objective3XValue, objective3YValue, "");
+        drawIcon("green_objective_" + objective3Icon, objective3XValue, objective3YValue);
+    }
+    if(objective4Icon>0){
+        drawLines(objective4XValue, objective4YValue, "");
+        drawIcon("green_objective_" + objective4Icon, objective4XValue, objective4YValue);
+    }
+    if(objective5Icon>0){
+        drawLines(objective5XValue, objective5YValue, "");
+        drawIcon("green_objective_" + objective5Icon, objective5XValue, objective5YValue);
+    }
     
     
     if(redShieldLine){
@@ -1164,13 +1193,16 @@ function drawDeployment(){
         drawLines(blueHammerXValue, blueHammerYValue, blueHammerTurn);
     }
 
-    // input is in inches, X 0 to 30, Y 0 to 22
-    drawRedShield(redShieldXValue, redShieldYValue);
-    drawRedDagger(redDaggerXValue, redDaggerYValue);
-    drawRedHammer(redHammerXValue, redHammerYValue);
-    drawBlueShield(blueShieldXValue, blueShieldYValue);
-    drawBlueDagger(blueDaggerXValue, blueDaggerYValue);
-    drawBlueHammer(blueHammerXValue, blueHammerYValue);
 
-}
+
+    // input is in inches, X 0 to 30, Y 0 to 22
+    drawIcon("red_shield", redShieldXValue, redShieldYValue)
+    drawIcon("red_dagger", redDaggerXValue, redDaggerYValue);
+    drawIcon("red_hammer", redHammerXValue, redHammerYValue);
+    drawIcon("blue_shield", blueShieldXValue, blueShieldYValue);
+    drawIcon("blue_dagger", blueDaggerXValue, blueDaggerYValue);
+    drawIcon("blue_hammer", blueHammerXValue, blueHammerYValue);
+    
+
+    }
 }
