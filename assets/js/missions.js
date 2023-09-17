@@ -758,8 +758,11 @@ async function onSaveClicked() {
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(exportObj);
     var downloadAnchorNode = document.createElement('a');
     downloadAnchorNode.setAttribute("href", dataStr);
-    file_name = "warcry_mission_" + data.missionName.replace(/ /g, "_");
-    file_name = file_name + ".json";
+    file_name = "warcry_mission_";
+    if (data.missionType != "") {
+        file_name = file_name + data.missionType.replace(/ /g, "_")+  "_";
+    }
+    file_name = file_name + data.missionName.replace(/ /g, "_") + ".json";
     downloadAnchorNode.setAttribute("download", file_name);
     document.body.appendChild(downloadAnchorNode); // required for firefox
     downloadAnchorNode.click();
@@ -770,8 +773,13 @@ function saveCardAsImage() {
     data = readControls();
     var element = document.createElement('a');
     element.setAttribute('href', document.getElementById('canvas').toDataURL('image/png'));
-    file_name = "warcry_mission_" + data.missionName.replace(/ /g, "_");
     
+    file_name = "warcry_mission_";
+    if (data.missionType != "") {
+        file_name = file_name + data.missionType.replace(/ /g, "_")+  "_";
+    }
+    file_name = file_name + data.missionName.replace(/ /g, "_") + ".png";
+
     element.setAttribute("download", file_name);
     element.style.display = 'none';
     document.body.appendChild(element);
@@ -834,8 +842,6 @@ async function fileChange(file) {
             json.bgselected = bgSelectedValue;
         }
         }
-
-
         writeControls(json);
     };
 
@@ -844,9 +850,6 @@ async function fileChange(file) {
     );
 
 }
-
-
-
 
 function getCustomBackgroundProperties() {
     return {
@@ -986,17 +989,16 @@ function drawLines(XValue, YValue, Turn) {
         
             if(XValue!=0 && XValue!=30){
                 value = XValue.toString() + '"';
-                x = convertInchesToPixelsLine(XValue/2, YValue - 0.7).x;
-                y = convertInchesToPixelsLine(XValue/2, YValue - 0.7).y;
+                x = convertInchesToPixelsLine(XValue/2, YValue).x;
+                y = convertInchesToPixelsLine(XValue/2, YValue).y;
                 writeScaledBorder(value, x, y);
             }
         } else {
             drawThickLine(getContext(), 30, YValue, XValue, YValue, 6, color="black")
             if(XValue!=0 && XValue!=30){
-                writeScaled((30-XValue).toString() + '"', convertInchesToPixelsLine(15 + XValue/2, YValue - 0.7));
                 value = (30-XValue).toString() + '"';
-                x = convertInchesToPixelsLine(15 + XValue/2, YValue - 0.7).x;
-                y = convertInchesToPixelsLine(15 + XValue/2, YValue - 0.7).y;
+                x = convertInchesToPixelsLine(15 + XValue/2, YValue).x;
+                y = convertInchesToPixelsLine(15 + XValue/2, YValue).y;
                 writeScaledBorder(value, x, y);
             }
         }
@@ -1006,16 +1008,16 @@ function drawLines(XValue, YValue, Turn) {
             drawThickLine(getContext(), XValue, 0, XValue, YValue, 6, color="black")
             if(YValue!=0 && YValue!=22){
                 value = YValue.toString() + '"';
-                x = convertInchesToPixelsLine(XValue - 0.8, YValue/2).x;
-                y = convertInchesToPixelsLine(XValue - 0.8, YValue/2).y;
+                x = convertInchesToPixelsLine(XValue, YValue/2).x;
+                y = convertInchesToPixelsLine(XValue, YValue/2).y;
                 writeScaledBorder(value, x, y);
             }
         } else {
              drawThickLine(getContext(), XValue, 22, XValue, YValue, 6, color="black")
              if(YValue!=0 && YValue!=22){
                 value = (22-YValue).toString() + '"';
-                x = convertInchesToPixelsLine(XValue - 0.8, 11+YValue/2).x;
-                y = convertInchesToPixelsLine(XValue - 0.8, 11+YValue/2).y;
+                x = convertInchesToPixelsLine(XValue, 11+YValue/2).x;
+                y = convertInchesToPixelsLine(XValue, 11+YValue/2).y;
                 writeScaledBorder(value, x, y);
              }
         }
