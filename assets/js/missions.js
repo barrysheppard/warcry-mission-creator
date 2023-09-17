@@ -1359,7 +1359,7 @@ function drawDeployment(){
             drawLines(blueShieldXValue, blueShieldYValue, blueShieldTurn);
         }
         if(blueDaggerLine){
-            drawBorderLine(blueDaggerLine, blueDaggerLine, blueDaggerLine);
+            drawBorderLine(blueDaggerXValue, blueDaggerYValue, blueDaggerLine);
         } else {
             drawLines(blueDaggerXValue, blueDaggerYValue, blueDaggerTurn);
         }
