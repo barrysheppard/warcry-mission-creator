@@ -247,9 +247,70 @@ function readControls() {
     data.customBackgroundProperties = getCustomBackgroundProperties();
     data.missionName = document.getElementById("missionName").value;
     data.missionType = document.getElementById("missionType").value;
-
-
     data.bgselected = document.getElementById('background-list').value;
+
+
+    data.blueHammerXValue = document.getElementById("blueHammerX").value;
+    data.blueHammerYValue = document.getElementById("blueHammerY").value;
+    data.blueHammerLine = document.getElementById("blueHammerLineDeployment").checked;
+    data.blueHammerTurn = document.getElementById("blueHammerTurn").value;
+
+    data.blueShieldXValue = document.getElementById("blueShieldX").value;
+    data.blueShieldYValue = document.getElementById("blueShieldY").value;
+    data.blueShieldLine = document.getElementById("blueShieldLineDeployment").checked;
+    data.blueShieldTurn = document.getElementById("blueShieldTurn").value;
+
+    data.blueDaggerXValue = document.getElementById("blueDaggerX").value;
+    data.blueDaggerYValue = document.getElementById("blueDaggerY").value;
+    data.blueDaggerLine = document.getElementById("blueDaggerLineDeployment").checked;
+    data.blueDaggerTurn = document.getElementById("blueDaggerTurn").value;
+
+    data.removeBlueDeployment = document.getElementById("removeBlueDeployment").checked;
+
+    data.redHammerXValue = document.getElementById("redHammerX").value;
+    data.redHammerYValue = document.getElementById("redHammerY").value;
+    data.redHammerLine = document.getElementById("redHammerLineDeployment").checked;
+    data.redHammerTurn = document.getElementById("redHammerTurn").value;
+
+    data.redShieldXValue = document.getElementById("redShieldX").value;
+    data.redShieldYValue = document.getElementById("redShieldY").value;
+    data.redShieldLine = document.getElementById("redShieldLineDeployment").checked;
+    data.redShieldTurn = document.getElementById("redShieldTurn").value;
+
+    data.redDaggerXValue = document.getElementById("redDaggerX").value;
+    data.redDaggerYValue = document.getElementById("redDaggerY").value;
+    data.redDaggerLine = document.getElementById("redDaggerLineDeployment").checked;
+    data.redDaggerTurn = document.getElementById("redDaggerTurn").value;
+
+    data.removeRedDeployment = document.getElementById("removeRedDeployment").checked;
+
+    data.objective1XValue = document.getElementById("objective1X").value;
+    data.objective1YValue = document.getElementById("objective1Y").value;
+    data.objective1Icon = document.getElementById("objective1Icon").value;
+    data.objective2XValue = document.getElementById("objective2X").value;
+    data.objective2YValue = document.getElementById("objective2Y").value;
+    data.objective2Icon = document.getElementById("objective2Icon").value;
+    data.objective3XValue = document.getElementById("objective3X").value;
+    data.objective3YValue = document.getElementById("objective3Y").value;
+    data.objective3Icon = document.getElementById("objective3Icon").value;
+    data.objective4XValue = document.getElementById("objective4X").value;
+    data.objective4YValue = document.getElementById("objective4Y").value;
+    data.objective4Icon = document.getElementById("objective4Icon").value;
+    data.objective5XValue = document.getElementById("objective5X").value;
+    data.objective5YValue = document.getElementById("objective5Y").value;
+    data.objective5Icon = document.getElementById("objective5Icon").value;
+    data.objective6XValue = document.getElementById("objective6X").value;
+    data.objective6YValue = document.getElementById("objective6Y").value;
+    data.objective6Icon = document.getElementById("objective6Icon").value;
+
+    data.removeBorder = document.getElementById("removeBorder").checked;
+    data.removeDeployment = document.getElementById("removeDeployment").checked;
+    data.symmetrical = document.getElementById("symmetrical").checked;
+    data.orientation = document.getElementById("orientation").checked;
+    data.white = document.getElementById("white").checked;
+
+    data.textValue = document.getElementById("textValue").value;
+
 
     return data;
 }
@@ -333,64 +394,186 @@ const renderFighterImage = function(missionData) {
 
 
 
-async function writeControls(missionData) {
+async function writeControls(data) {
     //setName("Warcry_Fighter_Card"); // Always default, trying to move away from this
 
     // here we check for base64 loaded image and convert it back to imageUrl
-    if (missionData.base64Image) {
+    if (data.base64Image) {
         // first convert to blob
         const dataToBlob = async (imageData) => {
             return await (await fetch(imageData)).blob();
         };
-        const blob = await dataToBlob(missionData.base64Image);
+        const blob = await dataToBlob(data.base64Image);
         // then create URL object
-        missionData.imageUrl = URL.createObjectURL(blob);
+        data.imageUrl = URL.createObjectURL(blob);
         // Now that's saved, clear out the base64 so we don't reassign
-        missionData.base64Image = null;
+        data.base64Image = null;
     }
 
-    if (missionData.base64CustomBackground) {
+    if (data.base64CustomBackground) {
         // first convert to blob
         const dataToBlob = async (imageData) => {
             return await (await fetch(imageData)).blob();
         };
-        const blob = await dataToBlob(missionData.base64CustomBackground);
+        const blob = await dataToBlob(data.base64CustomBackground);
         // then create URL object
-        missionData.customBackgroundUrl = URL.createObjectURL(blob);
+        data.customBackgroundUrl = URL.createObjectURL(blob);
         // Now that's saved, clear out the base64 so we don't reassign
-        missionData.base64CustomBackground = null;
+        data.base64CustomBackground = null;
     }
 
-    setModelImage(missionData.imageUrl);
-    setModelImageProperties(missionData.imageProperties);
-    setCustomBackground(missionData.customBackgroundUrl);
-    setCustomBackgroundProperties(missionData.customBackgroundProperties);
-    $("#missionName")[0].value = missionData.missionName;
-    $("#missionType")[0].value = missionData.missionType;
+    setModelImage(data.imageUrl);
+    setModelImageProperties(data.imageProperties);
+    setCustomBackground(data.customBackgroundUrl);
+    setCustomBackgroundProperties(data.customBackgroundProperties);
+    $("#missionName")[0].value = data.missionName;
+    $("#missionType")[0].value = data.missionType;
 
     // check and uncheck if needed
 
-    document.getElementById('background-list').value = missionData.bgselected;
+    document.getElementById('background-list').value = data.bgselected;
 
+    document.getElementById("blueHammerX").value = data.blueHammerXValue;
+    document.getElementById("blueHammerY").value = data.blueHammerYValue;
+    document.getElementById("blueHammerLineDeployment").checked = data.blueHammerLine;
+    document.getElementById("blueHammerTurn").value = data.blueHammerTurn;
+    
+    document.getElementById("blueShieldX").value = data.blueShieldXValue;
+    document.getElementById("blueShieldY").value = data.blueShieldYValue;
+    document.getElementById("blueShieldLineDeployment").checked = data.blueShieldLine;
+    document.getElementById("blueShieldTurn").value = data.blueShieldTurn;
+    
+    document.getElementById("blueDaggerX").value = data.blueDaggerXValue;
+    document.getElementById("blueDaggerY").value = data.blueDaggerYValue;
+    document.getElementById("blueDaggerLineDeployment").checked = data.blueDaggerLine;
+    document.getElementById("blueDaggerTurn").value = data.blueDaggerTurn;
+    
+    document.getElementById("removeBlueDeployment").checked = data.removeBlueDeployment;
+    
+    document.getElementById("redHammerX").value = data.redHammerXValue;
+    document.getElementById("redHammerY").value = data.redHammerYValue;
+    document.getElementById("redHammerLineDeployment").checked = data.redHammerLine;
+    document.getElementById("redHammerTurn").value = data.redHammerTurn;
+    
+    document.getElementById("redShieldX").value = data.redShieldXValue;
+    document.getElementById("redShieldY").value = data.redShieldYValue;
+    document.getElementById("redShieldLineDeployment").checked = data.redShieldLine;
+    document.getElementById("redShieldTurn").value = data.redShieldTurn;
+    
+    document.getElementById("redDaggerX").value = data.redDaggerXValue;
+    document.getElementById("redDaggerY").value = data.redDaggerYValue;
+    document.getElementById("redDaggerLineDeployment").checked = data.redDaggerLine;
+    document.getElementById("redDaggerTurn").value = data.redDaggerTurn;
+    
+    document.getElementById("removeRedDeployment").checked = data.removeRedDeployment;
+    
+    document.getElementById("objective1X").value = data.objective1XValue;
+    document.getElementById("objective1Y").value = data.objective1YValue;
+    document.getElementById("objective1Icon").value = data.objective1Icon;
+    document.getElementById("objective2X").value = data.objective2XValue;
+    document.getElementById("objective2Y").value = data.objective2YValue;
+    document.getElementById("objective2Icon").value = data.objective2Icon;
+    document.getElementById("objective3X").value = data.objective3XValue;
+    document.getElementById("objective3Y").value = data.objective3YValue;
+    document.getElementById("objective3Icon").value = data.objective3Icon;
+    document.getElementById("objective4X").value = data.objective4XValue;
+    document.getElementById("objective4Y").value = data.objective4YValue;
+    document.getElementById("objective4Icon").value = data.objective4Icon;
+    document.getElementById("objective5X").value = data.objective5XValue;
+    document.getElementById("objective5Y").value = data.objective5YValue;
+    document.getElementById("objective5Icon").value = data.objective5Icon;
+    document.getElementById("objective6X").value = data.objective6XValue;
+    document.getElementById("objective6Y").value = data.objective6YValue;
+    document.getElementById("objective6Icon").value = data.objective6Icon;
+    
+    document.getElementById("removeBorder").checked = data.removeBorder;
+    document.getElementById("removeDeployment").checked = data.removeDeployment;
+    document.getElementById("symmetrical").checked = data.symmetrical;
+    document.getElementById("orientation").checked = data.orientation;
+    document.getElementById("white").checked = data.white;
+    
+    document.getElementById("textValue").value = data.textValue;
+    
     // render the updated info
-    render(missionData);
+    render(data);
 }
 
 function defaultmissionData() {
-    var missionData = new Object;
-    missionData.name = "Warcry_Fighter_Card";
-    missionData.imageUrl = null;
-    missionData.imageProperties = getDefaultModelImageProperties();
-    missionData.base64Image = null;
-    missionData.customBackgroundUrl = null;
-    missionData.customBackgroundProperties = getDefaultModelImageProperties();
-    missionData.base64CustomBackground = null;
-    missionData.missionName = "Straight Face Off";
-    missionData.missionType = "Deployment";
+    var data = new Object;
+    data.name = "Warcry_Fighter_Card";
+    data.imageUrl = null;
+    data.imageProperties = getDefaultModelImageProperties();
+    data.base64Image = null;
+    data.customBackgroundUrl = null;
+    data.customBackgroundProperties = getDefaultModelImageProperties();
+    data.base64CustomBackground = null;
+    data.missionName = "Straight Face Off";
+    data.missionType = "Deployment";
 
-    missionData.bgselected = "bg-07";
+    data.bgselected = "bg-07";
 
-    return missionData;
+    data.blueHammerXValue = 24;
+    data.blueHammerYValue = 17;
+    data.blueHammerLine = false;
+    data.blueHammerTurn = 1;
+
+    data.blueShieldXValue = 15;
+    data.blueShieldYValue = 15;
+    data.blueShieldLine = false;
+    data.blueShieldTurn = 1;
+
+    data.blueDaggerXValue = 6;
+    data.blueDaggerYValue = 17;
+    data.blueDaggerLine = false;
+    data.blueDaggerTurn = 1;
+
+    data.removeBlueDeployment = false;
+
+    data.redHammerXValue = 24;
+    data.redHammerYValue = 5;
+    data.redHammerLine = false;
+    data.redHammerTurn = 1;
+
+    data.redShieldXValue = 15;
+    data.redShieldYValue = 7;
+    data.redShieldLine = false;
+    data.redShieldTurn = 1;
+
+    data.redDaggerXValue = 6
+    data.redDaggerYValue = 5;
+    data.redDaggerLine = false;
+    data.redDaggerTurn = 1;
+
+    data.removeRedDeployment = false;
+
+    data.objective1XValue = 0;
+    data.objective1YValue = 0;
+    data.objective1Icon = 0;
+    data.objective2XValue = 0;
+    data.objective2YValue = 0;
+    data.objective2Icon = 0;
+    data.objective3XValue = 0;
+    data.objective3YValue = 0;
+    data.objective3Icon = 0;
+    data.objective4XValue = 0;
+    data.objective4YValue = 0;
+    data.objective4Icon = 0;
+    data.objective5XValue = 0;
+    data.objective5YValue = 0;
+    data.objective5Icon = 0;
+    data.objective6XValue = 0;
+    data.objective6YValue = 0;
+    data.objective6Icon = 0;
+
+    data.removeBorder = false;
+    data.removeDeployment = false;
+    data.symmetrical = false;
+    data.orientation = true;
+    data.white = false;
+
+    data.textValue = "";
+
+    return data;
 }
 
 function savemissionDataMap(newMap) {
@@ -570,29 +753,13 @@ async function onSaveClicked() {
     //data.imageUrl = null;
 
     // need to be explicit due to sub arrays
-    var exportObj = JSON.stringify(data, ['name', 'imageUrl', 
-        'imageProperties', 'offsetX', 'offsetY', 'scalePercent', 
-        'factionRunemark', 'subfactionRunemark', 'deploymentRunemark', 'missionName', 'missionName2',
-        'toughness', 'wounds', 'move', 'pointCost', 'tagRunemarks', 
-        'weapon1', 'attacks', 'damageBase', 'damageCrit',
-        'enabled', 'rangeMax', 'rangeMin', 'runemark', 'strength', 
-        'weapon2', 'attacks', 'damageBase', 'damageCrit',
-        'enabled', 'rangeMax', 'rangeMin', 'runemark', 'strength',
-        'bg01', 'bg02', 'bg03', 'bg04', 'bg05', 'bg06', 'bg07', 'bg08', 'bg09', 'bg10', 
-        'bg11','bg12','bg13', 'bg14', 'bg15', 'bg16', 'bgselected',
-        'customBackgroundUrl', 'customBackgroundProperties','customBackgroundOffsetX', 
-        'customBackgroundOffsetY', 'customBackgroundScalePercent',
-        'base64CustomBackground', 'base64Image'], 4);
+    var exportObj = JSON.stringify(data);
 
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(exportObj);
     var downloadAnchorNode = document.createElement('a');
     downloadAnchorNode.setAttribute("href", dataStr);
     file_name = "warcry_mission_" + data.missionName.replace(/ /g, "_");
-    if (data.missionName2 == "") {
-        file_name = file_name + ".json";
-    } else {
-        file_name = file_name +  "_" + data.missionName2.replace(/ /g, "_") + ".json";
-    }
+    file_name = file_name + ".json";
     downloadAnchorNode.setAttribute("download", file_name);
     document.body.appendChild(downloadAnchorNode); // required for firefox
     downloadAnchorNode.click();
@@ -1099,6 +1266,8 @@ function drawDeployment(){
     var blueDaggerLine = document.getElementById("blueDaggerLineDeployment").checked;
     var blueDaggerTurn = document.getElementById("blueDaggerTurn").value;
 
+    var removeBlueDeployment = document.getElementById("removeBlueDeployment").checked;
+
     var redHammerXValue = document.getElementById("redHammerX").value;
     var redHammerYValue = document.getElementById("redHammerY").value;
     var redHammerLine = document.getElementById("redHammerLineDeployment").checked;
@@ -1113,6 +1282,9 @@ function drawDeployment(){
     var redDaggerYValue = document.getElementById("redDaggerY").value;
     var redDaggerLine = document.getElementById("redDaggerLineDeployment").checked;
     var redDaggerTurn = document.getElementById("redDaggerTurn").value;
+
+    var removeRedDeployment = document.getElementById("removeRedDeployment").checked;
+
 
     var objective1XValue = document.getElementById("objective1X").value;
     var objective1YValue = document.getElementById("objective1Y").value;
@@ -1129,6 +1301,9 @@ function drawDeployment(){
     var objective5XValue = document.getElementById("objective5X").value;
     var objective5YValue = document.getElementById("objective5Y").value;
     var objective5Icon = document.getElementById("objective5Icon").value;
+    var objective6XValue = document.getElementById("objective6X").value;
+    var objective6YValue = document.getElementById("objective6Y").value;
+    var objective6Icon = document.getElementById("objective6Icon").value;
 
 
     // prepare text for line drawing
@@ -1139,70 +1314,93 @@ function drawDeployment(){
     getContext().textBaseline = "middle";
     
 
-    // Treasure and Objectives
+    // Treasure and Objectives Lines
     if(objective1Icon>0){
         drawLines(objective1XValue, objective1YValue, "");
-        drawIcon("green_objective_" + objective1Icon, objective1XValue, objective1YValue);
     }
     if(objective2Icon>0){
         drawLines(objective2XValue, objective2YValue, "");
-        drawIcon("green_objective_" + objective2Icon, objective2XValue, objective2YValue);
     }
     if(objective3Icon>0){
         drawLines(objective3XValue, objective3YValue, "");
-        drawIcon("green_objective_" + objective3Icon, objective3XValue, objective3YValue);
     }
     if(objective4Icon>0){
         drawLines(objective4XValue, objective4YValue, "");
-        drawIcon("green_objective_" + objective4Icon, objective4XValue, objective4YValue);
     }
     if(objective5Icon>0){
         drawLines(objective5XValue, objective5YValue, "");
-        drawIcon("green_objective_" + objective5Icon, objective5XValue, objective5YValue);
+    }
+    if(objective6Icon>0){
+        drawLines(objective6XValue, objective6YValue, "");
     }
     
-    
-    if(redShieldLine){
-        drawBorderLine(redShieldXValue, redShieldYValue, redShieldTurn);
-    } else {
-        drawLines(redShieldXValue, redShieldYValue, redShieldTurn);
-    }
-    if(redDaggerLine){
-        drawBorderLine(redDaggerXValue, redDaggerYValue, redDaggerTurn);
-    } else {
-        drawLines(redDaggerXValue, redDaggerYValue, redDaggerTurn);
-    }
-    if(redHammerLine){
-        drawBorderLine(redHammerXValue, redHammerYValue, redHammerTurn);
-    } else {
-        drawLines(redHammerXValue, redHammerYValue, redHammerTurn);
-    }
-    if(blueShieldLine){
-        drawBorderLine(blueShieldXValue, blueShieldYValue, blueShieldTurn);
-    } else {
-        drawLines(blueShieldXValue, blueShieldYValue, blueShieldTurn);
-    }
-    if(blueDaggerLine){
-        drawBorderLine(blueDaggerLine, blueDaggerLine, blueDaggerLine);
-    } else {
-        drawLines(blueDaggerXValue, blueDaggerYValue, blueDaggerTurn);
-    }
-    if(blueHammerLine){
-        drawBorderLine(blueHammerXValue, blueHammerYValue, blueHammerTurn);
-    } else {
-        drawLines(blueHammerXValue, blueHammerYValue, blueHammerTurn);
+    if(!removeRedDeployment){
+        if(redShieldLine){
+            drawBorderLine(redShieldXValue, redShieldYValue, redShieldTurn);
+        } else {
+            drawLines(redShieldXValue, redShieldYValue, redShieldTurn);
+        }
+        if(redDaggerLine){
+            drawBorderLine(redDaggerXValue, redDaggerYValue, redDaggerTurn);
+        } else {
+            drawLines(redDaggerXValue, redDaggerYValue, redDaggerTurn);
+        }
+        if(redHammerLine){
+            drawBorderLine(redHammerXValue, redHammerYValue, redHammerTurn);
+        } else {
+            drawLines(redHammerXValue, redHammerYValue, redHammerTurn);
+        }
     }
 
+    if(!removeBlueDeployment){
+        if(blueShieldLine){
+            drawBorderLine(blueShieldXValue, blueShieldYValue, blueShieldTurn);
+        } else {
+            drawLines(blueShieldXValue, blueShieldYValue, blueShieldTurn);
+        }
+        if(blueDaggerLine){
+            drawBorderLine(blueDaggerLine, blueDaggerLine, blueDaggerLine);
+        } else {
+            drawLines(blueDaggerXValue, blueDaggerYValue, blueDaggerTurn);
+        }
+        if(blueHammerLine){
+            drawBorderLine(blueHammerXValue, blueHammerYValue, blueHammerTurn);
+        } else {
+            drawLines(blueHammerXValue, blueHammerYValue, blueHammerTurn);
+        }
+    }
 
+        // Treasure and Objectives Icons
+        if(objective1Icon>0){
+            drawIcon("green_objective_" + objective1Icon, objective1XValue, objective1YValue);
+        }
+        if(objective2Icon>0){
+            drawIcon("green_objective_" + objective2Icon, objective2XValue, objective2YValue);
+        }
+        if(objective3Icon>0){
+            drawIcon("green_objective_" + objective3Icon, objective3XValue, objective3YValue);
+        }
+        if(objective4Icon>0){
+            drawIcon("green_objective_" + objective4Icon, objective4XValue, objective4YValue);
+        }
+        if(objective5Icon>0){
+            drawIcon("green_objective_" + objective5Icon, objective5XValue, objective5YValue);
+        }
+        if(objective6Icon>0){
+            drawIcon("green_objective_" + objective6Icon, objective6XValue, objective6YValue);
+        }
 
-    // input is in inches, X 0 to 30, Y 0 to 22
-    drawIcon("red_shield", redShieldXValue, redShieldYValue)
-    drawIcon("red_dagger", redDaggerXValue, redDaggerYValue);
-    drawIcon("red_hammer", redHammerXValue, redHammerYValue);
-    drawIcon("blue_shield", blueShieldXValue, blueShieldYValue);
-    drawIcon("blue_dagger", blueDaggerXValue, blueDaggerYValue);
-    drawIcon("blue_hammer", blueHammerXValue, blueHammerYValue);
-    
+        // input is in inches, X 0 to 30, Y 0 to 22
+        if(!removeRedDeployment){
+            drawIcon("red_shield", redShieldXValue, redShieldYValue)
+            drawIcon("red_dagger", redDaggerXValue, redDaggerYValue);
+            drawIcon("red_hammer", redHammerXValue, redHammerYValue);
+        }
+        if(!removeBlueDeployment){
+        drawIcon("blue_shield", blueShieldXValue, blueShieldYValue);
+        drawIcon("blue_dagger", blueDaggerXValue, blueDaggerYValue);
+        drawIcon("blue_hammer", blueHammerXValue, blueHammerYValue);
+        }
 
     }
 }
